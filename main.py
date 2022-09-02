@@ -7,7 +7,7 @@ import json
 
 app = FastAPI()
 
-origins = ["*"]
+# origins = ["*"]
 
 # app.add_middleware(
 #     CORSMiddleware,
@@ -16,6 +16,7 @@ origins = ["*"]
 #     allow_methods=["*"],
 #     allow_headers=["*"],
 # )
+
 class model_input(BaseModel):
     # marriage_couples: float
     # female_marriage_age: float
