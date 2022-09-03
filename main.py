@@ -45,6 +45,6 @@ def babies_pred(input_parameters: model_input):
     if prediction[0][0] > 0:
         return prediction[0][0]
     else:
-        return "Zero taiwanese baby was born"
+        return "Zero Taiwanese baby was born"
 
 
