@@ -19,8 +19,6 @@ app.add_middleware(
 
 class model_input(BaseModel):
     # marriage_couples: float
-    # female_marriage_age: float
-    # male_marriage_age: float
     marriage_couples: int
     female_marriage_age: int
     male_marriage_age: int
@@ -31,8 +29,8 @@ predict_model = pickle.load(open('predict_model.sav', 'rb'))
 
 @app.post('/prediction')
 def babies_pred(input_parameters: model_input):
-    input_data = input_parameters.json()
-    input_dictionary = json.loads(input_data)
+    # 直接轉換為字典（假設是 Pydantic 模型）
+    input_dictionary = input_parameters.dict()
 
     marriage = input_dictionary['marriage_couples']
     f_age = input_dictionary['female_marriage_age']
@@ -43,7 +41,7 @@ def babies_pred(input_parameters: model_input):
     prediction = predict_model.predict([input_list])
 
     if prediction[0][0] > 0:
-        return prediction[0][0]
+        return int(prediction[0][0])
     else:
         return "Zero Taiwanese baby was born"
 
